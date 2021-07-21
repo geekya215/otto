@@ -20,7 +20,7 @@ def parse_row(row):
     return f"{city} {status} {wind_direction} {wind_level} 最高气温:{max_temperature} 最低气温:{min_temperature}"
 
 
-def otto():
+def weather_forecast():
     with open("forecast.txt", "w", encoding="utf-8") as f:
         for code in area_code:
             req = requests.get(url_generate(code))
@@ -32,6 +32,3 @@ def otto():
                         f.write(parse_row(t.select("td")[1:]) + "\n")
                     else:
                         f.write(parse_row(t.select("td")) + "\n")
-
-
-otto()
